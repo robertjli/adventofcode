@@ -3,6 +3,7 @@ package util
 import (
 	"bufio"
 	"os"
+	"strconv"
 	"strings"
 )
 
@@ -13,15 +14,27 @@ func ReadFile(path string) []string {
 	return strings.Split(strings.TrimSpace(string(b)), "\n")
 }
 
-// ProcessLines calls the process() function on each line in the specified file.
-func ProcessLines(path string, process func(string)) {
+// NewScanner returns a Scanner to read lines from the specified file
+func NewScanner(path string) (*bufio.Scanner, func() error) {
 	f, err := os.Open(path)
 	FailIf(err, "unable to open file", path)
 
-	scanner := bufio.NewScanner(f)
+	return bufio.NewScanner(f), f.Close
+}
+
+// ProcessLines calls the process() function on each line in the specified file.
+func ProcessLines(path string, process func(string)) {
+	scanner, closeFunc := NewScanner(path)
 	for scanner.Scan() {
 		process(scanner.Text())
 	}
 
-	_ = f.Close()
+	_ = closeFunc()
+}
+
+// ParseInt converts the string s to an int, or fails
+func ParseInt(s string) int {
+	i, err := strconv.Atoi(s)
+	FailIf(err)
+	return i
 }
