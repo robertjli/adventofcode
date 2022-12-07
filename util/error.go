@@ -14,3 +14,11 @@ func FailIf(err error, msg ...string) {
 		panic(err)
 	}
 }
+
+// Assert panics if b is false.
+func Assert(b bool) {
+	if !b {
+		panic("Assertion failed")
+	}
+	fmt.Print(" ✅ ")
+}
