@@ -16,9 +16,9 @@ func FailIf(err error, msg ...string) {
 }
 
 // Assert panics if b is false.
-func Assert(b bool) {
-	if !b {
-		panic("Assertion failed")
+func Assert(actual, expected any) {
+	if actual != expected {
+		panic(fmt.Sprintf("Assertion failed, expected %v but got %v", expected, actual))
 	}
 	fmt.Print(" ✅ ")
 }

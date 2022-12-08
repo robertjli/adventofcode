@@ -23,10 +23,10 @@ func main() {
 	}
 
 	fmt.Print("Part 1:\t")
-	util.Assert(solve1(sampleTree) == 95437)
+	util.Assert(solve1(sampleTree), 95437)
 	fmt.Print("\n")
 	fmt.Print("Part 2:\t")
-	util.Assert(solve2(sampleTree) == 24933642)
+	util.Assert(solve2(sampleTree), 24933642)
 	fmt.Print("\n\n")
 
 	fmt.Println("Graded Input")
