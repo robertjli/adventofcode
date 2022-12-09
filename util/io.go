@@ -23,7 +23,7 @@ func NewScanner(path string) (*bufio.Scanner, func() error) {
 }
 
 // ProcessLines calls the process() function on each line in the specified file.
-func ProcessLines(path string, process func(string)) {
+func ProcessLines(path string, process func(line string)) {
 	scanner, closeFunc := NewScanner(path)
 	for scanner.Scan() {
 		process(scanner.Text())
