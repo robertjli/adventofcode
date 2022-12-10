@@ -15,21 +15,21 @@ func ReadFile(path string) []string {
 }
 
 // NewScanner returns a Scanner to read lines from the specified file
-func NewScanner(path string) (*bufio.Scanner, func() error) {
+func NewScanner(path string) (*bufio.Scanner, func()) {
 	f, err := os.Open(path)
 	FailIf(err, "unable to open file", path)
 
-	return bufio.NewScanner(f), f.Close
+	return bufio.NewScanner(f), func() { _ = f.Close() }
 }
 
 // ProcessLines calls the process() function on each line in the specified file.
 func ProcessLines(path string, process func(line string)) {
 	scanner, closeFunc := NewScanner(path)
+	defer closeFunc()
+
 	for scanner.Scan() {
 		process(scanner.Text())
 	}
-
-	_ = closeFunc()
 }
 
 // ParseInt converts the string s to an int, or fails

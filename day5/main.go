@@ -58,6 +58,7 @@ func solve(file string, part int, moveFunc moveFunc) {
 	defer stop()
 
 	scanner, closeFunc := util.NewScanner(day + file)
+	defer closeFunc()
 	scanner.Scan()
 
 	stackLines := make([]string, 0, 8)
@@ -76,8 +77,6 @@ func solve(file string, part int, moveFunc moveFunc) {
 	}
 
 	fmt.Printf("Answer for part %d:\t%s\n", part, tops)
-
-	_ = closeFunc()
 }
 
 func build(lines []string) []*deque.Deque[rune] {
