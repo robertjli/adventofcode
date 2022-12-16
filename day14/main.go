@@ -21,16 +21,14 @@ func main() {
 	fmt.Println("Done")
 
 	fmt.Print("Solving...")
-	// TODO This currently only solves part 2, solving both parts with the same map is too much
-	// effort right now.
-	sampleAns := solve(sampleMap)
+	sampleCaught, sampleSands := solve(sampleMap)
 	fmt.Println("Done")
 
 	fmt.Print("Part 1:\t")
-	//util.Assert(sample1, 24)
+	util.Assert(sampleCaught, 24)
 	fmt.Print("\n")
 	fmt.Print("Part 2:\t")
-	util.Assert(sampleAns, 93)
+	util.Assert(sampleSands, 93)
 	fmt.Print("\n\n")
 
 	fmt.Println("Graded Input")
@@ -64,10 +62,11 @@ type rockMap struct {
 
 func answer(m *rockMap) {
 	stop := util.StartTiming()
-	ans := solve(m)
+	caught, sands := solve(m)
 	stop()
 
-	fmt.Printf("Answer for part 2:\t%d\n", ans)
+	fmt.Printf("Answer for part 1:\t%d\n", caught)
+	fmt.Printf("Answer for part 2:\t%d\n", sands)
 }
 
 func buildMap(file string) *rockMap {
@@ -160,24 +159,32 @@ func (m *rockMap) print() {
 	fmt.Println()
 }
 
-func solve(m *rockMap) int {
+func solve(m *rockMap) (caught int, sands int) {
 	if debug {
 		fmt.Println()
 	}
 
-	sand := 0
-	for ; m.m[point{500, 0}] == empty; sand++ {
-		dropOne(m)
+	abyss := false
+	for ; m.m[point{500, 0}] == empty; sands++ {
+		p := dropOne(m)
 
 		if debug {
-			fmt.Printf("dropped sand %d\n", sand+1)
+			fmt.Printf("dropped sand %d, landed at (%d, %d)\n", sands+1, p.x, p.y)
 			m.print()
 		}
+
+		if !abyss {
+			if p.y < m.maxY {
+				caught++
+			} else {
+				abyss = true
+			}
+		}
 	}
-	return sand
+	return caught, sands
 }
 
-func dropOne(m *rockMap) bool {
+func dropOne(m *rockMap) point {
 	s := point{500, 0}
 	next := getNext(m.m, s)
 	for s != next { // still moving
@@ -188,6 +195,7 @@ func dropOne(m *rockMap) bool {
 			if s.x > m.maxX {
 				m.maxX = s.x
 			}
+			// landed on the floor
 			break
 		}
 
@@ -197,7 +205,7 @@ func dropOne(m *rockMap) bool {
 
 	// now at rest, record the final spot
 	m.m[s] = sand
-	return true
+	return s
 }
 
 func getNext(m map[point]unit, s point) point {
