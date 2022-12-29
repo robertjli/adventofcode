@@ -5,12 +5,12 @@ import (
 	"math"
 	"strings"
 
-	"github.com/robertjli/adventofcode2022/util"
+	"github.com/robertjli/adventofcode/util"
 )
 
 const debug = false
 
-var day = fmt.Sprintf("day%d/", 7)
+var day = fmt.Sprintf("2022/day%d/", 7)
 
 func main() {
 	fmt.Println("Sample Input")

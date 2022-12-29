@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 
-	"github.com/robertjli/adventofcode2022/util"
+	"github.com/robertjli/adventofcode/util"
 )
 
 const debug = false
 
-var day = fmt.Sprintf("day%d/", 8)
+var day = fmt.Sprintf("2022/day%d/", 8)
 
 func main() {
 	fmt.Println("Sample Input")

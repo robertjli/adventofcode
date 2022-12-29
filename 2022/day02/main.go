@@ -3,12 +3,12 @@ package main
 import (
 	"fmt"
 
-	"github.com/robertjli/adventofcode2022/util"
+	"github.com/robertjli/adventofcode/util"
 )
 
 const debug = false
 
-var day = fmt.Sprintf("day%d/", 2)
+var day = fmt.Sprintf("2022/day%d/", 2)
 
 var scoresPart1 = map[string]int{
 	"A X": 4, // rock     (1) + draw (3)

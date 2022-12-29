@@ -8,12 +8,12 @@ import (
 
 	"github.com/gammazero/deque"
 
-	"github.com/robertjli/adventofcode2022/util"
+	"github.com/robertjli/adventofcode/util"
 )
 
 const debug = false
 
-var day = fmt.Sprintf("day%d/", 5)
+var day = fmt.Sprintf("2022/day%d/", 5)
 
 func main() {
 	fmt.Println("Sample Input")
