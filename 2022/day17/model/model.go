@@ -2,6 +2,7 @@ package model
 
 import (
 	"fmt"
+	"strings"
 
 	"github.com/robertjli/adventofcode/util"
 )
@@ -71,18 +72,21 @@ func (c *Chamber) Top() [Width]Unit {
 func (c *Chamber) Solidify() {
 	for _, p := range c.active.Positions() {
 		c.grid[p.row][p.col] = Stopped
+	}
 
-		if p.row+1 > c.height {
-			c.height = p.row + 1
-		}
+	if c.active.Top()+1 > c.height {
+		c.height = c.active.Top() + 1
 	}
 
 	c.active = nil
 }
 
-func (c *Chamber) Print() {
+func (c *Chamber) Print(msg ...string) {
 	fmt.Println()
-	for i := len(c.grid) - 1; i >= 0; i-- {
+	fmt.Println(strings.Join(msg, " "))
+	lines := 0
+	for i := len(c.grid) - 1; i >= 0 && lines < 20; i-- {
+		lines++
 		row := c.grid[i]
 		fmt.Print(colorWall, "|")
 		for j, cell := range row {
@@ -120,4 +124,24 @@ func NewJetter(file string) *Jetter {
 		order: dirs,
 		index: 0,
 	}
+}
+
+func (j *Jetter) PushRock(rock Rock, chamber *Chamber) Dir {
+	dir := j.order[j.index]
+	j.index = (j.index + 1) % len(j.order)
+
+	switch dir {
+	case Left:
+		rock.PushLeft(chamber)
+	case Right:
+		rock.PushRight(chamber)
+	default:
+		panic(fmt.Sprintf("unknown dir %c", dir))
+	}
+
+	return dir
+}
+
+func (j *Jetter) Reset() {
+	j.index = 0
 }

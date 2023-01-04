@@ -28,3 +28,7 @@ func (r *Rocker) CreateRock(row int) Rock {
 	r.index = (r.index + 1) % len(r.order)
 	return rock
 }
+
+func (r *Rocker) Reset() {
+	r.index = 0
+}

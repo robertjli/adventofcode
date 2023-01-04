@@ -20,7 +20,7 @@ func (d *Dash) PushLeft(chamber *Chamber) bool {
 }
 
 func (d *Dash) PushRight(chamber *Chamber) bool {
-	if d.origin.col == Width-4 || chamber.grid[d.origin.row][d.origin.col+5] != Empty {
+	if d.origin.col == Width-4 || chamber.grid[d.origin.row][d.origin.col+4] != Empty {
 		return false
 	}
 

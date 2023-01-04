@@ -11,13 +11,33 @@ func NewPipe(row int) Rock {
 }
 
 func (p *Pipe) PushLeft(chamber *Chamber) bool {
-	//TODO implement me
-	panic("implement me")
+	if p.bottom.col == 0 {
+		return false
+	}
+
+	for i := 0; i < 4; i++ {
+		if chamber.grid[p.bottom.row+i][p.bottom.col-1] != Empty {
+			return false
+		}
+	}
+
+	p.bottom = Point{p.bottom.row, p.bottom.col - 1}
+	return true
 }
 
 func (p *Pipe) PushRight(chamber *Chamber) bool {
-	//TODO implement me
-	panic("implement me")
+	if p.bottom.col == Width-1 {
+		return false
+	}
+
+	for i := 0; i < 4; i++ {
+		if chamber.grid[p.bottom.row+i][p.bottom.col+1] != Empty {
+			return false
+		}
+	}
+
+	p.bottom = Point{p.bottom.row, p.bottom.col + 1}
+	return true
 }
 
 func (p *Pipe) FallDown(chamber *Chamber) bool {

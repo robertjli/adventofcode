@@ -11,13 +11,33 @@ func NewAngle(row int) Rock {
 }
 
 func (a *Angle) PushLeft(chamber *Chamber) bool {
-	//TODO implement me
-	panic("implement me")
+	if a.joint.col == 2 {
+		return false
+	}
+
+	if chamber.grid[a.joint.row][a.joint.col-3] != Empty ||
+		chamber.grid[a.joint.row+1][a.joint.col-1] != Empty ||
+		chamber.grid[a.joint.row+2][a.joint.col-1] != Empty {
+		return false
+	}
+
+	a.joint = Point{a.joint.row, a.joint.col - 1}
+	return true
 }
 
 func (a *Angle) PushRight(chamber *Chamber) bool {
-	//TODO implement me
-	panic("implement me")
+	if a.joint.col == Width-1 {
+		return false
+	}
+
+	if chamber.grid[a.joint.row][a.joint.col+1] != Empty ||
+		chamber.grid[a.joint.row+1][a.joint.col+1] != Empty ||
+		chamber.grid[a.joint.row+2][a.joint.col+1] != Empty {
+		return false
+	}
+
+	a.joint = Point{a.joint.row, a.joint.col + 1}
+	return true
 }
 
 func (a *Angle) FallDown(chamber *Chamber) bool {

@@ -18,58 +18,76 @@ func main() {
 	fmt.Println("------------")
 	sampleJetter := model.NewJetter(day + "sample.txt")
 	fmt.Print("Part 1:\t")
-	util.Assert(solve1(rocker, sampleJetter, 6), 3068)
+	util.Assert(solve(rocker, sampleJetter, 2022), 3068)
 	fmt.Print("\n")
 	fmt.Print("Part 2:\t")
-	util.Assert(solve2(), -1)
+	util.Assert(solve(rocker, sampleJetter, 1000000000000), 1514285714288)
 	fmt.Print("\n\n")
 
 	fmt.Println("Graded Input")
 	fmt.Println("------------")
 	jetter := model.NewJetter(day + "input.txt")
 	part1(rocker, jetter, 2022)
-	//part2()
+	part2(rocker, jetter, 1000000000000)
 }
 
 func part1(rocker *model.Rocker, jetter *model.Jetter, rocks int) {
 	stop := util.StartTiming()
 	defer stop()
 
-	fmt.Printf("Answer for part 1:\t%d\n", solve1(rocker, jetter, rocks))
+	fmt.Printf("Answer for part 1:\t%d\n", solve(rocker, jetter, rocks))
 }
 
-func part2() {
+func part2(rocker *model.Rocker, jetter *model.Jetter, rocks int) {
 	stop := util.StartTiming()
 	defer stop()
 
-	fmt.Printf("Answer for part 2:\t%d\n", solve2())
+	fmt.Printf("Answer for part 2:\t%d\n", solve(rocker, jetter, rocks))
 }
 
-func solve1(rocker *model.Rocker, jetter *model.Jetter, rocks int) int {
+func solve(rocker *model.Rocker, jetter *model.Jetter, rocks int) int {
+	fmt.Println(rocks)
+	rocker.Reset()
+	jetter.Reset()
 	chamber := model.NewChamber(4, 4000)
-	chamber.Print()
+
+	if debug {
+		chamber.Print()
+	}
 
 	for r := 0; r < rocks; r++ {
 		rock := rocker.CreateRock(chamber.Height() + 3)
 		chamber.SetActive(rock)
-		chamber.Print()
+
+		if debug {
+			chamber.Print("spawned rock")
+		}
+
 		for {
 			// jet push
+			dir := jetter.PushRock(rock, chamber)
+
+			if debug {
+				chamber.Print(fmt.Sprintf("pushed rock %c", dir))
+			}
 
 			// fall
 			fell := rock.FallDown(chamber)
 			if !fell {
 				chamber.Solidify()
-				chamber.Print()
+
+				if debug {
+					chamber.Print("solidified")
+				}
+
 				break
 			}
-			chamber.Print()
+
+			if debug {
+				chamber.Print("fell one")
+			}
 		}
 	}
 
 	return chamber.Height()
-}
-
-func solve2() int {
-	return -1
 }

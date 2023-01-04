@@ -16,3 +16,12 @@ and I've spent two hours working on this already, so I'm leaving it for tomorrow
 ms for part 1. I wrote a pretty hacky part 2 with the same graph and similar logic. It took ~5
 minutes to run, but gave me the right answer. Sadly I probably won't go back and improve it. I spent
 about an hour on this problem today.
+
+### Day 17: Pyroclastic Flow
+
+3 Jan: I've been spending a bit of time here and there for this problem. It seems like it's just
+begging for an object-oriented approach, so I set up different a different class for each rock and
+ran the simulation for part 1 just fine. It's not happy with part 2, though.
+
+I wonder if it's a memory allocation problem—I could look into using a circular buffer for the
+chamber, because we don't care about lower sections of the chamber once they're completely covered.

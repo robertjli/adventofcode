@@ -11,13 +11,25 @@ func NewBox(row int) Rock {
 }
 
 func (b *Box) PushLeft(chamber *Chamber) bool {
-	//TODO implement me
-	panic("implement me")
+	if b.origin.col == 0 ||
+		chamber.grid[b.origin.row][b.origin.col-1] != Empty ||
+		chamber.grid[b.origin.row+1][b.origin.col-1] != Empty {
+		return false
+	}
+
+	b.origin = Point{b.origin.row, b.origin.col - 1}
+	return true
 }
 
 func (b *Box) PushRight(chamber *Chamber) bool {
-	//TODO implement me
-	panic("implement me")
+	if b.origin.col == Width-2 ||
+		chamber.grid[b.origin.row][b.origin.col+2] != Empty ||
+		chamber.grid[b.origin.row+1][b.origin.col+2] != Empty {
+		return false
+	}
+
+	b.origin = Point{b.origin.row, b.origin.col + 1}
+	return true
 }
 
 func (b *Box) FallDown(chamber *Chamber) bool {

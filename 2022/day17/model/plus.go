@@ -11,13 +11,33 @@ func NewPlus(row int) Rock {
 }
 
 func (p *Plus) PushLeft(chamber *Chamber) bool {
-	//TODO implement me
-	panic("implement me")
+	if p.center.col == 1 {
+		return false
+	}
+
+	if chamber.grid[p.center.row][p.center.col-2] != Empty ||
+		chamber.grid[p.center.row-1][p.center.col-1] != Empty ||
+		chamber.grid[p.center.row+1][p.center.col-1] != Empty {
+		return false
+	}
+
+	p.center = Point{p.center.row, p.center.col - 1}
+	return true
 }
 
 func (p *Plus) PushRight(chamber *Chamber) bool {
-	//TODO implement me
-	panic("implement me")
+	if p.center.col == Width-2 {
+		return false
+	}
+
+	if chamber.grid[p.center.row][p.center.col+2] != Empty ||
+		chamber.grid[p.center.row-1][p.center.col+1] != Empty ||
+		chamber.grid[p.center.row+1][p.center.col+1] != Empty {
+		return false
+	}
+
+	p.center = Point{p.center.row, p.center.col + 1}
+	return true
 }
 
 func (p *Plus) FallDown(chamber *Chamber) bool {
