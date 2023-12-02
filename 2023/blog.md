@@ -26,3 +26,16 @@ going to need to look at this code again, and for an input of this size, it stil
 than a second. My initial thought was to use some sort of trie, but I'm glad I just banged it out.
 
 This was a long entry; I'm sure as the month progresses I'll write much less 😅
+
+### Day 2: Cube Conundrum
+
+Relatively simple one today, but a good reintroduction to the string parsing aspect of AoC. I dunno
+if there are better ways to do it, but I typically use a lot of `strings.Split()`,
+`str[len("xyz"):]`, and `strings.HasPrefix/Suffix()`, along with a bunch of branching to handle
+specific string terms in the input (in this case, "red", "green", and "blue"). Understandably, these
+string operations aren't the algorithmically optimal ways to do it, but hey, it's worked so far.
+
+One improvement to the project infra that I'm thinking of adding, is generating the files for each
+day. Since I can't think of a good way to get rid of all the boilerplate, I should at least make it
+easier for me to create it. And now is the best time to do it, while the actual problem solving
+isn't too difficult yet, haha.
