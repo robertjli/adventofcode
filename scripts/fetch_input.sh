@@ -3,4 +3,8 @@
 year=$1
 day=$2
 
-curl -s -b $(cat .session_cookie) "https://adventofcode.com/$year/day/$day/input" -o "$year/day$(printf %02d $day)/input.txt"
+dir_path="$year/day$(printf %02d $day)"
+
+curl -s -b $(cat .session_cookie) \
+    "https://adventofcode.com/$year/day/$day/input" \
+    -o "$dir_path/input.txt"
