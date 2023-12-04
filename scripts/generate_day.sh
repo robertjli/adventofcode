@@ -14,6 +14,12 @@ $(dirname $0)/fetch_input.sh $year $day
 cat > $dir_path/main.go <<EOF
 package main
 
+import (
+	"fmt"
+
+	"github.com/robertjli/adventofcode/util"
+)
+
 /*
 <Insert problem statement>
 */
