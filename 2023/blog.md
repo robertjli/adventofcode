@@ -39,3 +39,27 @@ One improvement to the project infra that I'm thinking of adding, is generating 
 day. Since I can't think of a good way to get rid of all the boilerplate, I should at least make it
 easier for me to create it. And now is the best time to do it, while the actual problem solving
 isn't too difficult yet, haha.
+
+### Day 3: Gear Ratios
+
+I'm thinking about part 1 (and so this blog is now also a notepad), and two solutions come to mind:
+
+- Create a `[][]rune` and store the entire schematic as is
+- Create a map of each entry in the schematic, with the key being its location
+
+Each of these storage solutions has two algorithmic solutions to calculate the final answer:
+
+- Go through each number and check if it's adjacent to a symbol
+- Go through each symbol and add all adjacent numbers (keeping in mind duplicates)
+
+I'm going back and forth between the four solutions, as I don't think any is much easier or harder.
+I'll create a map and iterate the numbers. Let's go.
+
+...
+
+I've just finished the problem (on Dec 4, I was too tired last night to work on it), and I think my
+chosen solution worked out well. Although for part 2, I did initially try to iterate on symbols
+instead of numbers, and I realized it was a bit tricky to determine if a number was a neighbor of a
+symbol, while the other way around was very easy. So I ended up iterating on numbers and storing a
+map of potential gears and their "pivots". O(n) space (where n is the number of numbers), but hey,
+it worked. That's been the theme of this year so far 😂
