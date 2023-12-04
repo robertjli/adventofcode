@@ -33,7 +33,7 @@ func main() {
 	util.Assert(solve1("sample.txt"), 0)
 	// fmt.Print("\n")
 	// fmt.Print("Part 2:\t")
-	// util.Assert(solve2("sample2.txt"), 0)
+	// util.Assert(solve2("sample.txt"), 0)
 	fmt.Print("\n\n")
 
 	fmt.Println("Graded Input")
