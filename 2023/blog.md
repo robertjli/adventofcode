@@ -63,3 +63,20 @@ instead of numbers, and I realized it was a bit tricky to determine if a number 
 symbol, while the other way around was very easy. So I ended up iterating on numbers and storing a
 map of potential gears and their "pivots". O(n) space (where n is the number of numbers), but hey,
 it worked. That's been the theme of this year so far 😂
+
+### Day 4: Scratchcards
+
+LOL, let's go O(N²) algorithm! Took a peek at the input, it seems small enough 🤣. I'm guessing
+there will be some complication with part 2 that will mess it up, though, but I'll figure that out
+when I get there.
+
+...
+
+Wow, part 2 was _not_ what I expected. I think it can be done with an array of number of copies.
+When a card wins, it adds its copy count to the following cards. Okay, mentally this checks out,
+let's go.
+
+...
+
+Well that worked out easily, I'm glad I took the risk of doing the quick, inefficient solution in
+part 1! That's a good lesson for me in the future.
