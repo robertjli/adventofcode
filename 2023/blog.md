@@ -80,3 +80,23 @@ let's go.
 
 Well that worked out easily, I'm glad I took the risk of doing the quick, inefficient solution in
 part 1! That's a good lesson for me in the future.
+
+### Day 5: If You Give A Seed A Fertilizer
+
+The input values are ten digits, so it's not feasible to actually create maps in memory. I'll need
+to translate each seed value as I parse the input.
+
+...
+
+That worked for part 1, but part 2 looks like over a billion seed values, so I won't be able to
+calculate each one. I think the key is that the mappings are all continuous ranges, so I only need
+to test the lowest value. That does mean that one input range could map to multiple output ranges,
+if it spans multiple ranges in the mapping.
+
+...
+
+There was one complication, that if a mapping is not defined then the destination equals the source.
+Since an input range could be split, with one portion within a defined mapping and one portion with
+no defined mapping, I had to figure out a way to account for that remainder. I finally realized that
+I could just create mapping for these "gaps", then I wouldn't need to keep track of what portions of
+ranges weren't accounted for.
