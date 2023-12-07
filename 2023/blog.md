@@ -100,3 +100,17 @@ Since an input range could be split, with one portion within a defined mapping a
 no defined mapping, I had to figure out a way to account for that remainder. I finally realized that
 I could just create mapping for these "gaps", then I wouldn't need to keep track of what portions of
 ranges weren't accounted for.
+
+### Day 6: Wait For It
+
+I took a look at some other answers from yesterday, and I was suprised to find that many people just
+iterated over all of the seeds individually, and used concurrency and computing power to get it done
+in a reasonable amount of time (less than two minutes). I'm pretty sure I would have saved at least
+two minutes if I just brute-forced the solution instead of implementing my range-boundary one, but
+to be honest I'm still proud of what I wrote. Still, it's something to keep in mind.
+
+Today's was fairly simple, and I did implement an O(N) solution, where N is the time of the race. I
+slightly optimized it by realizing that it was symmetric, so I only needed to calculate half of the
+possibilities. The longer race in part 2 took 62ms to calculate, which is a lot worse than the 65µs
+of part 1, and by far the longest runtime of any solution thus far, but it's still less than a
+second, so I won't sweat it.
