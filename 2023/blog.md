@@ -114,3 +114,9 @@ slightly optimized it by realizing that it was symmetric, so I only needed to ca
 possibilities. The longer race in part 2 took 62ms to calculate, which is a lot worse than the 65µs
 of part 1, and by far the longest runtime of any solution thus far, but it's still less than a
 second, so I won't sweat it.
+
+### Day 7: Camel Cards
+
+Today's problem looked a bit annoying at first, as I wasn't sure what the best way to classify poker
+hands would be. Luckily my presumably inefficient solution isn't too unreasonable, and also both
+parts were pretty simple after I got the hands parsed.
