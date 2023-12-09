@@ -120,3 +120,10 @@ second, so I won't sweat it.
 Today's problem looked a bit annoying at first, as I wasn't sure what the best way to classify poker
 hands would be. Luckily my presumably inefficient solution isn't too unreasonable, and also both
 parts were pretty simple after I got the hands parsed.
+
+### Day 8: Haunted Wasteland
+
+I first attempted part 2 by just traversing the graph concurrently—I figured there were only 6, how
+hard could it be? When the program didn't return anything for over a minute I got worried, but I
+thought of a more math-y solution: find how long each path will take and then find the least
+common multiple, and that's the first time they'll all sync up. Maths!
