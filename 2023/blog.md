@@ -127,3 +127,9 @@ I first attempted part 2 by just traversing the graph concurrently—I figured t
 hard could it be? When the program didn't return anything for over a minute I got worried, but I
 thought of a more math-y solution: find how long each path will take and then find the least
 common multiple, and that's the first time they'll all sync up. Maths!
+
+### Day 9: Mirage Maintenance
+
+I'm really sleepy today, so although I was worried while reading the problem that I would need to
+come up with something more efficient than calculating each step for each line. Luckily even part 2
+was really simple and had no added complexity 🙇
