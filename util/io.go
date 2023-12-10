@@ -38,3 +38,12 @@ func ParseInt(s string) int {
 	FailIf(err)
 	return i
 }
+
+// ParseInts converts a []string to an []int, or fails
+func ParseInts(strs []string) []int {
+	ints := make([]int, len(strs))
+	for i, str := range strs {
+		ints[i] = ParseInt(str)
+	}
+	return ints
+}
